@@ -20,8 +20,6 @@ public class Player : MonoBehaviour {
 
     void Update() {
         HandleInput();
-
-        Debug.Log($"Stamina: {stamina}");
     }
 
     private void HandleInput() {
