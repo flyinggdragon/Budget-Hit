@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
     private float speed = 5.0f;
-    private float sprintSpeed = 13.0f;
+    private float sprintSpeed = 10.0f;
     private float stamina = 200;
+    private float jumpHeight = 2.0f;
     public int health;
     private bool isGrounded = true;
     
@@ -55,14 +56,6 @@ public class Player : MonoBehaviour {
         }
 
         rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
-
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
-            Jump();
-        }
-    }
-
-    private void Jump() {
-        rb.AddForce(Vector3.up * 10.0f, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision) {

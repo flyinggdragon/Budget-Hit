@@ -108,6 +108,7 @@ public class BidimentionalAnimationStateController : MonoBehaviour {
         ChangeVelocity(forwardPressed, leftPressed, rightPressed, runPressed, currentMaxVelocity);
         LockOrResetVelocity(forwardPressed, leftPressed, rightPressed, runPressed, currentMaxVelocity);
 
+        animator.SetBool("isRunning", runPressed);
         animator.SetFloat(VelocityZHash, velocityZ);
         animator.SetFloat(VelocityXHash, velocityX);
     }

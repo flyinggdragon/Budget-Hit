@@ -4,31 +4,26 @@ using UnityEngine;
 
 public class AnimationStateController : MonoBehaviour {
     public Animator animator;
-    public float velocity = 0.0f;
-    public float acceleration = 1.0f;
-    public float deceleration = 2.0f;
-    private int velocityHash;
 
     void Start() {
-        velocityHash = Animator.StringToHash("Velocity");
+        
     }
 
     void Update() {
-        bool forwardPressed = Input.GetKey(KeyCode.W);
-        bool runPressed = Input.GetKey(KeyCode.LeftShift);
+        bool backPressed = Input.GetKey(KeyCode.S);
 
-        if (forwardPressed && velocity < 1.0f) {
-            velocity += Time.deltaTime * acceleration;
+        if (backPressed) {
+            animator.SetBool("walkBack", true);
+        } else {
+            animator.SetBool("walkBack", false);
         }
 
-        if (!forwardPressed && velocity > 0.0f) {
-            velocity -= Time.deltaTime * acceleration;
+        if (Input.GetKeyDown(KeyCode.Mouse0)) {
+            animator.SetTrigger("Attack");
         }
 
-        if (!forwardPressed && velocity < 0.0f) {
-            velocity = 0.0f;
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            animator.SetTrigger("Jump");
         }
-
-        animator.SetFloat(velocityHash, velocity);
     }
 }
