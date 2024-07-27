@@ -25,5 +25,13 @@ public class AnimationStateController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
             animator.SetTrigger("Jump");
         }
+
+        if (Input.GetKeyDown(KeyCode.E)) {
+            animator.SetTrigger("Skill");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q)) {
+            animator.SetTrigger("Burst");
+        }
     }
 }
