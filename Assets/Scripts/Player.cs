@@ -16,11 +16,13 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
+    // Temporário
+    [SerializeField] private Weapon weapon;
 
     //private PlayableCharacter character;
 
     void Start() {
-
+        DisableWeaponCollision();
     }
 
 
@@ -99,6 +101,14 @@ public class Player : MonoBehaviour {
 
     public void InstantiateBurst() {
         Instantiate(elementalBurst, elementalAttackPosition.position, elementalAttackPosition.rotation);
+    }
+
+    public void EnableWeaponCollision() {
+        weapon.EnableCollision();
+    }
+
+    public void DisableWeaponCollision() {
+        weapon.DisableCollision();
     }
 
     private void OnCollisionEnter(Collision collision) {

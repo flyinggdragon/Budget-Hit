@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour, ICanAttack {
-    public abstract string enemyName { get; protected set; }
+public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
     public abstract int baseATK { get; protected set; }
     public abstract float critRate { get; protected set; }
     public abstract float critDMG { get; protected set; }
@@ -11,8 +10,14 @@ public abstract class Enemy : MonoBehaviour, ICanAttack {
     public abstract int proficiency { get; protected set; }
     public abstract float attackCooldownTime { get; protected set; }
     public abstract Animator animator { get; protected set; }
-
     public abstract void Attack();
+    public abstract string name { get; protected set; }
+    public abstract int level { get; protected set; }
+    public abstract int exp { get; protected set; }
+    public abstract int health { get; protected set; }
+    public abstract int maxHP { get; protected set; }
+    public abstract void Die();
+    public abstract void GetHit();
 
     public void StartAttackTimer() {
         StartCoroutine(PeriodicAttack(attackCooldownTime));
