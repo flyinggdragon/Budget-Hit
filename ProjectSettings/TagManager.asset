@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Weapon
+  - EnemyAttack
+  - ElementalSkill
+  - ElementalBurst
   layers:
   - Default
   - TransparentFX

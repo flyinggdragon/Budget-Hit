@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    private int baseATK = 50;
+    private float critRate = 50.0f;
+    private float critDMG = 100.0f;
+    private int proficiency = 100;
     private float speed = 5.0f;
     private float sprintSpeed = 10.0f;
     private float stamina = 200;
-    public int health;
+    private int health = 100;
     private bool isGrounded = true;
     private bool shouldMove = true;
     
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private Transform elementalAttackPosition;
+    [SerializeField] public Transform elementalAttackPosition;
 
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
@@ -29,6 +33,12 @@ public class Player : MonoBehaviour {
     void Update() {
         if (shouldMove) {
             HandleInput();
+        }
+
+        Debug.Log("Vida do Player: " + health);
+
+        if (health <= 0) {
+            animator.SetTrigger("Die");
         }
     }
 
@@ -71,6 +81,17 @@ public class Player : MonoBehaviour {
         // Atacar
         if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded) {
             animator.SetTrigger("Attack");
+
+            Debug.Log(
+                Damage.CalculateDamage(
+                    AttackType.Physical,
+                    null,
+                    baseATK,
+                    critRate,
+                    critDMG,
+                    proficiency
+                )
+            );
         }
 
         // Pular
@@ -109,6 +130,13 @@ public class Player : MonoBehaviour {
 
     public void DisableWeaponCollision() {
         weapon.DisableCollision();
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("EnemyAttack")) {
+            health -= 35;
+            animator.SetTrigger("Hit");
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {

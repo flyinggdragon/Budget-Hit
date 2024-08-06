@@ -286,6 +286,8 @@ namespace DigitalRuby.LightningBolt
 
         private void Start()
         {
+            StartPosition = GameObject.Find("ElementalAttackPosition").transform.position;
+
             orthographic = (Camera.main != null && Camera.main.orthographic);
             lineRenderer = GetComponent<LineRenderer>();
             lineRenderer.positionCount = 0;
