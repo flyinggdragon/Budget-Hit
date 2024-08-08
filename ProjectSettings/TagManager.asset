@@ -9,6 +9,7 @@ TagManager:
   - EnemyAttack
   - ElementalSkill
   - ElementalBurst
+  - Enemy
   layers:
   - Default
   - TransparentFX

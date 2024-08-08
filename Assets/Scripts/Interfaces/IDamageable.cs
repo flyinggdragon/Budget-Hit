@@ -1,3 +1,3 @@
 public interface IDamageable {
-    void GetHit();
+    void GetHit(int damageSuffered);
 }

@@ -29,9 +29,9 @@ public static class Damage {
     }
 
     public static int CalculateBaseDamage(int baseATK) {
-        Random r = new Random();
+        Random rng = new Random();
 
-        return baseATK + r.Next(1, 20);
+        return baseATK + rng.Next(1, 20);
     }
 
     public static int CalculatePhysicalDamage(int baseDMG) {
@@ -62,12 +62,16 @@ public static class Damage {
     }
 
     public static bool Critical(float critRate) {
-        Random r = new Random();
+        Random rng = new Random();
 
-        return (r.Next(0, 100)) > critRate;
+        int critRoll = rng.Next(0, 100);
+        
+        return critRoll > critRate;
     }
 
     public static int CalculateCriticalDamage(float critDMG, int partialDamage) {
-        return (int)Math.Ceiling(partialDamage * (1 + (critDMG / 100)));
+        critDMG = partialDamage * (1 + (critDMG / 100));
+
+        return (int)Math.Ceiling(critDMG);
     }
 }

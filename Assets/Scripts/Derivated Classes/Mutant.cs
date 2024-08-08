@@ -12,22 +12,22 @@ public class Mutant : Enemy {
     public override string name { get; protected set; } = "Mutant";
     public override int level { get; protected set; } = 0;
     public override int exp { get; protected set; } = 0;
-    public override int health { get; protected set; } = 100;
+    public override int health { get; protected set; } = 2000;
     public override int maxHP { get; protected set; } = 100;
 
     private Coroutine attackCoroutine;
     [SerializeField] private Animator animator;
+    [SerializeField] private BoxCollider _boxCollider;
+    public override BoxCollider boxCollider {
+        get { return _boxCollider; }
+    }
     [SerializeField] private BoxCollider _attackCollider;
     public override BoxCollider attackCollider {
         get { return _attackCollider; }
     }
 
-    public override void EnableAttackCollision() {
-        base.EnableAttackCollision();
-    }
-
-    public override void DisableAttackCollision() {
-        base.DisableAttackCollision();
+    public void DestroySelf() {
+        base.DestroySelf(gameObject);
     }
 
     void Start() {
@@ -43,10 +43,14 @@ public class Mutant : Enemy {
         }
     }
 
-    public override void GetHit() {}
+    public override void GetHit(int damageSuffered) {
+        base.GetHit(damageSuffered);
+    }
 
     public override void Die() {
         animator.SetTrigger("Die");
+        base.DisableAttackCollision();
+        base.DisableBoxCollision();
     }
 
     void OnDestroy() {
@@ -70,7 +74,6 @@ public class Mutant : Enemy {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Weapon")) {
-            health -= 10;
             animator.SetTrigger("Hit");
         }
 

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    private int baseATK = 50;
-    private float critRate = 50.0f;
-    private float critDMG = 100.0f;
-    private int proficiency = 100;
+    public int baseATK { get; private set; } = 50;
+    public float critRate { get; private set; } = 50.0f;
+    public float critDMG { get; private set; } = 100.0f;
+    public int proficiency { get; private set; } = 100;
     private float speed = 5.0f;
     private float sprintSpeed = 10.0f;
+    public int health { get; private set; } = 1000;
     private float stamina = 200;
-    private int health = 100;
     private bool isGrounded = true;
     private bool shouldMove = true;
+    // Temporário
     
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody rb;
@@ -20,8 +21,18 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
+    private Element characterElement = Element.Electro;
+
+    [SerializeField] private GameObject elementalSkill2;
+    [SerializeField] private GameObject elementalBurst2;
+    private Element characterElement2 = Element.Pyro;
+
+    [SerializeField] private GameObject elementalSkill3;
+    [SerializeField] private GameObject elementalBurst3;
+    private Element characterElement3 = Element.Scotos;
     // Temporário
     [SerializeField] private Weapon weapon;
+    [SerializeField] private Collision collision;
 
     //private PlayableCharacter character;
 
@@ -81,17 +92,6 @@ public class Player : MonoBehaviour {
         // Atacar
         if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded) {
             animator.SetTrigger("Attack");
-
-            Debug.Log(
-                Damage.CalculateDamage(
-                    AttackType.Physical,
-                    null,
-                    baseATK,
-                    critRate,
-                    critDMG,
-                    proficiency
-                )
-            );
         }
 
         // Pular
@@ -105,8 +105,19 @@ public class Player : MonoBehaviour {
         }
         
         // Burst
-        if (Input.GetKeyDown(KeyCode.Q) && isGrounded) {
-            animator.SetTrigger("Burst");
+        if (Input.GetKeyDown(KeyCode.Alpha1) && isGrounded) {
+            //animator.SetTrigger("Burst");
+            InstantiateSkill2(elementalSkill);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Alpha2) && isGrounded) {
+            //animator.SetTrigger("Burst");
+            InstantiateSkill2(elementalSkill2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && isGrounded) {
+            //animator.SetTrigger("Burst");
+            InstantiateSkill2(elementalSkill3);
         }
 
         if (movement != Vector3.zero) {
@@ -118,6 +129,10 @@ public class Player : MonoBehaviour {
 
     public void InstantiateSkill() {
         Instantiate(elementalSkill, elementalAttackPosition.position, elementalAttackPosition.rotation);
+    }
+
+    public void InstantiateSkill2(GameObject prefab) {
+        Instantiate(prefab, elementalAttackPosition.position, elementalAttackPosition.rotation);
     }
 
     public void InstantiateBurst() {
