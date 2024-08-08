@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6945279252284965210}
   - component: {fileID: 3132994955604384180}
+  - component: {fileID: 6564123333891353456}
   m_Layer: 0
   m_Name: PyroBurst
   m_TagString: ElementalBurst
@@ -55,6 +56,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.1385465, y: 1, z: 2.4020972}
   m_Center: {x: 0.05106932, y: 0, z: -0.025229216}
+--- !u!114 &6564123333891353456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220178229739975863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c831bcfa3681234abc199c2e5742d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 0
+  isBurst: 1
+  boxCollider: {fileID: 3132994955604384180}
 --- !u!1001 &6352899324001778192
 PrefabInstance:
   m_ObjectHideFlags: 0

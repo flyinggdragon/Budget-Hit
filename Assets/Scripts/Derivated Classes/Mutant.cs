@@ -26,6 +26,11 @@ public class Mutant : Enemy {
         get { return _attackCollider; }
     }
 
+    [SerializeField] private EnemyAttackBox _attackBox;
+    public override EnemyAttackBox attackBox {
+        get { return _attackBox; }
+    }
+
     public void DestroySelf() {
         base.DestroySelf(gameObject);
     }
@@ -61,15 +66,15 @@ public class Mutant : Enemy {
         animator.SetTrigger("Punch");
     }
 
+    public override void HandleHit(Collider other) {
+        base.HandleHit(other);
+    }
+
     private new void StopAttackTimer() {
         if (attackCoroutine != null) {
             StopCoroutine(attackCoroutine);
             attackCoroutine = null;
         }
-    }
-
-    public void TakeDamage(int value) {
-        health -= value;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -78,7 +83,6 @@ public class Mutant : Enemy {
         }
 
         if (other.CompareTag("ElementalBurst") || other.CompareTag("ElementalSkill")) {
-            health -= 25;
             animator.SetTrigger("Hit");
 
             GameObject collider = other.gameObject;

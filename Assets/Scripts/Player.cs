@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, IDamageable {
     public int baseATK { get; private set; } = 50;
     public float critRate { get; private set; } = 50.0f;
     public float critDMG { get; private set; } = 100.0f;
@@ -127,6 +127,16 @@ public class Player : MonoBehaviour {
         rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
     }
 
+    public void GetHit(int damageSuffered) {
+        health -= damageSuffered;
+    }
+
+    public void DestroySelf() {
+        Destroy(transform.GetChild(0).gameObject);
+        Destroy(transform.GetChild(1).gameObject);
+        Destroy(elementalAttackPosition.gameObject);
+    }
+
     public void InstantiateSkill() {
         Instantiate(elementalSkill, elementalAttackPosition.position, elementalAttackPosition.rotation);
     }
@@ -149,7 +159,6 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("EnemyAttack")) {
-            health -= 35;
             animator.SetTrigger("Hit");
         }
     }

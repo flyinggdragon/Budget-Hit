@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7060650787933503206}
   - component: {fileID: 3608733166374671245}
+  - component: {fileID: 2892255690653241971}
   m_Layer: 0
   m_Name: DendroSkill
   m_TagString: Untagged
@@ -55,6 +56,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2892255690653241971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7370418020878709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c831bcfa3681234abc199c2e5742d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 3
+  isBurst: 0
+  boxCollider: {fileID: 3608733166374671245}
 --- !u!1001 &5137607272771853098
 PrefabInstance:
   m_ObjectHideFlags: 0

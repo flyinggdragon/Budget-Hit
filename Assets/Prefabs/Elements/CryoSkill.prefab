@@ -24547,6 +24547,7 @@ GameObject:
   - component: {fileID: 6645005954557020410}
   - component: {fileID: 741327893556645363}
   - component: {fileID: 7089036290776737572}
+  - component: {fileID: 864560082946381394}
   m_Layer: 0
   m_Name: CryoSkill
   m_TagString: ElementalSkill
@@ -24617,6 +24618,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9474075, y: 1, z: 1.8591447}
   m_Center: {x: -0.019672036, y: 0, z: 0.027365714}
+--- !u!114 &864560082946381394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9124825540560698323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c831bcfa3681234abc199c2e5742d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 1
+  isBurst: 0
+  boxCollider: {fileID: 7089036290776737572}
 --- !u!1 &9164932524955552598
 GameObject:
   m_ObjectHideFlags: 0

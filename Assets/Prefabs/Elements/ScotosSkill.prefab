@@ -114,7 +114,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4987,6 +4987,7 @@ GameObject:
   - component: {fileID: 8125585545779561490}
   - component: {fileID: 1142555545427780412}
   - component: {fileID: 1647303796176154235}
+  - component: {fileID: 4867206402917109606}
   m_Layer: 0
   m_Name: ScotosSkill
   m_TagString: ElementalSkill
@@ -5029,7 +5030,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -9844,6 +9845,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2289672, y: 2.1283998, z: 1.2315128}
   m_Center: {x: 0.009603927, y: 0, z: -0.00030051288}
+--- !u!114 &4867206402917109606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6076274182593084687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c831bcfa3681234abc199c2e5742d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 5
+  isBurst: 0
+  boxCollider: {fileID: 1647303796176154235}
 --- !u!1 &7080793798644850175
 GameObject:
   m_ObjectHideFlags: 0
@@ -9892,7 +9908,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14572,7 +14588,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

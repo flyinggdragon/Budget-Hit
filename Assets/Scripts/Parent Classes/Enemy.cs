@@ -16,6 +16,7 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
     public abstract int maxHP { get; protected set; }
     public abstract BoxCollider boxCollider { get; }
     public abstract BoxCollider attackCollider { get; }
+    public abstract EnemyAttackBox attackBox { get; }
 
     public virtual void EnableBoxCollision() {
         boxCollider.enabled = true;
@@ -39,6 +40,19 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
     
     public abstract void Attack();
     public abstract void Die();
+    public virtual void HandleHit(Collider other) {
+        other.GetComponent<Player>().GetHit(
+            Damage.CalculateDamage(
+                AttackType.Physical,
+                null,
+                baseATK,
+                critRate,
+                critDMG,
+                proficiency
+            )
+        ); 
+    }
+
     public virtual void GetHit(int damageSuffered) {
         health -= damageSuffered;
     }

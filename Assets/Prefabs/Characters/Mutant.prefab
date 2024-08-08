@@ -42,8 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2177697660708899937}
   - component: {fileID: 1492687852750277716}
+  - component: {fileID: 9097590482419199282}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: Attack Collider
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,6 +86,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.28786066, y: 0.7153363, z: 0.17628077}
   m_Center: {x: -0.013912582, y: 0.30696356, z: 0.021319553}
+--- !u!114 &9097590482419199282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822548826228006201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253910f394898b245b7d7180536db1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentEnemy: {fileID: 6574374906452452304}
 --- !u!1 &1240429880424543699
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,9 +996,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258d4524aa6fc244594808c6a062d87d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  _boxCollider: {fileID: 0}
-  _attackCollider: {fileID: 0}
+  animator: {fileID: 2267225895159891117}
+  _boxCollider: {fileID: 7768069892352083231}
+  _attackCollider: {fileID: 1492687852750277716}
+  _attackBox: {fileID: 0}
 --- !u!54 &209760024469972131
 Rigidbody:
   m_ObjectHideFlags: 0

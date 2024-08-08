@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5046869728929874711}
   - component: {fileID: 9001486758877608237}
   - component: {fileID: 7773751782923710298}
+  - component: {fileID: 4700692196350807202}
   m_Layer: 0
   m_Name: HydroSkill
   m_TagString: ElementalSkill
@@ -4853,3 +4854,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.445689, y: 3.502347, z: 3.3287404}
   m_Center: {x: 0.0047940016, y: -0.09705591, z: 0.11273968}
+--- !u!114 &4700692196350807202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335631336751503158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c831bcfa3681234abc199c2e5742d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 4
+  isBurst: 0
+  boxCollider: {fileID: 7773751782923710298}

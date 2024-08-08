@@ -4987,6 +4987,7 @@ GameObject:
   - component: {fileID: 8125585545779561490}
   - component: {fileID: 1142555545427780412}
   - component: {fileID: 2470145139511718159}
+  - component: {fileID: 3974513084460108375}
   m_Layer: 0
   m_Name: ScotosBurst
   m_TagString: ElementalBurst
@@ -9844,6 +9845,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2185867, y: 2.1283996, z: 1.2553015}
   m_Center: {x: 0.0353438, y: 0, z: 0.024799354}
+--- !u!114 &3974513084460108375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6076274182593084687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c831bcfa3681234abc199c2e5742d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  element: 5
+  isBurst: 1
+  boxCollider: {fileID: 2470145139511718159}
 --- !u!1 &7080793798644850175
 GameObject:
   m_ObjectHideFlags: 0
