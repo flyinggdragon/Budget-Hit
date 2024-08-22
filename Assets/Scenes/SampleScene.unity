@@ -348,6 +348,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8102e1d764cfb3f4c9f15c298c2113a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1708677002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9097590482419199282, guid: d52a79ed45d6a474b89c8b0b695e48ae, type: 3}
+  m_PrefabInstance: {fileID: 5589007730222434862}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253910f394898b245b7d7180536db1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &2044392382 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 1840237673324962245, guid: 923391535e0d080478183464a3045701, type: 3}
@@ -1454,6 +1465,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 281608558}
+    - target: {fileID: 6574374906452452304, guid: d52a79ed45d6a474b89c8b0b695e48ae, type: 3}
+      propertyPath: _attackBox
+      value: 
+      objectReference: {fileID: 1708677002}
     - target: {fileID: 6574374906452452304, guid: d52a79ed45d6a474b89c8b0b695e48ae, type: 3}
       propertyPath: _boxCollider
       value: 

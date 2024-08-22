@@ -1,23 +1,43 @@
 using System;
 
 public static class Damage {
-    public static int CalculateDamage(AttackType attackType, Element? element, int baseATK, float critRate, float critDMG, int proficiency) {
+    public static int CalculateDamage(
+            AttackType attackType,
+            bool isReaction,
+            Element? element,
+            Element? reactingWith,
+            int baseATK,
+            float critRate,
+            float critDMG,
+            int proficiency
+        ) {
         int partialDamage = 0;
 
         int baseDMG = CalculateBaseDamage(baseATK);
-        
+
         switch(attackType) {
             case AttackType.Physical:
                 partialDamage = CalculatePhysicalDamage(baseDMG);
                 break;
             
-            // Não está pronto.
             case AttackType.ElementalSkill:
-                partialDamage = CalculateElementalDamage(baseDMG);
+                if (isReaction && element.HasValue && reactingWith.HasValue) {
+                    partialDamage = CalculateElementalReactionDamage(
+                        baseDMG, element.Value, reactingWith.Value, proficiency
+                    );
+                } else {
+                    partialDamage = CalculateElementalDamage(baseDMG);
+                }
                 break;
             
             case AttackType.Burst:
-                partialDamage = CalculateElementalDamage(baseDMG) * 2;
+                if (isReaction && element.HasValue && reactingWith.HasValue) {
+                    partialDamage = CalculateElementalReactionDamage(
+                        baseDMG, element.Value, reactingWith.Value, proficiency
+                    ) * 2;
+                } else {
+                    partialDamage = CalculateElementalDamage(baseDMG) * 2;
+                }
                 break;
         }
 
@@ -30,7 +50,6 @@ public static class Damage {
 
     public static int CalculateBaseDamage(int baseATK) {
         Random rng = new Random();
-
         return baseATK + rng.Next(1, 20);
     }
 
@@ -58,20 +77,17 @@ public static class Damage {
     }
 
     public static float CalculateProficiencyBonus(int proficiency) {
-        return 1 + (proficiency / 1000);
+        return 1 + (proficiency / 1000f);
     }
 
     public static bool Critical(float critRate) {
         Random rng = new Random();
-
         int critRoll = rng.Next(0, 100);
-        
-        return critRoll > critRate;
+        return critRoll < critRate;
     }
 
     public static int CalculateCriticalDamage(float critDMG, int partialDamage) {
         critDMG = partialDamage * (1 + (critDMG / 100));
-
         return (int)Math.Ceiling(critDMG);
     }
 }

@@ -17,6 +17,7 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
     public abstract BoxCollider boxCollider { get; }
     public abstract BoxCollider attackCollider { get; }
     public abstract EnemyAttackBox attackBox { get; }
+    public abstract List<ElementalAttack> affectedBy { get; protected set; }
 
     public virtual void EnableBoxCollision() {
         boxCollider.enabled = true;
@@ -44,6 +45,8 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
         other.GetComponent<Player>().GetHit(
             Damage.CalculateDamage(
                 AttackType.Physical,
+                false,
+                null,
                 null,
                 baseATK,
                 critRate,

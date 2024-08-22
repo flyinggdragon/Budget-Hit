@@ -17,15 +17,4 @@
         );
     }
 }
-
-
-
-- type: AttackType
-- element: Element
-+ damage: int
-
-
-+ Attack(Attack type, Element element, int baseATK, float critRate, float critDMG, int proficiency)
-+ CalculateDamage(int baseATK, float critRate, float critDMG, int proficiency)
-
 */

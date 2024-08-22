@@ -23,6 +23,8 @@ public abstract class Weapon : MonoBehaviour {
             enemy.GetHit(
                 Damage.CalculateDamage(
                     AttackType.Physical,
+                    false,
+                    null,
                     null,
                     player.baseATK,
                     player.critRate,

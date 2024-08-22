@@ -12,8 +12,9 @@ public class Mutant : Enemy {
     public override string name { get; protected set; } = "Mutant";
     public override int level { get; protected set; } = 0;
     public override int exp { get; protected set; } = 0;
-    public override int health { get; protected set; } = 2000;
+    public override int health { get; protected set; } = 20000;
     public override int maxHP { get; protected set; } = 100;
+    public override List<ElementalAttack> affectedBy { get; protected set; }
 
     private Coroutine attackCoroutine;
     [SerializeField] private Animator animator;
@@ -39,6 +40,8 @@ public class Mutant : Enemy {
         if (attackCoroutine == null) {
             attackCoroutine = StartCoroutine(base.PeriodicAttack(attackCooldownTime));
         }
+
+        affectedBy = new List<ElementalAttack>();
     }
 
     void Update() {
@@ -85,8 +88,26 @@ public class Mutant : Enemy {
         if (other.CompareTag("ElementalBurst") || other.CompareTag("ElementalSkill")) {
             animator.SetTrigger("Hit");
 
-            GameObject collider = other.gameObject;
-            collider.GetComponent<BoxCollider>().enabled = false;
+            ElementalAttack reactingWithEAttack = other.GetComponent<ElementalAttack>();
+
+            if (affectedBy.Count > 0) {
+                foreach (ElementalAttack eAttack in affectedBy) {
+                    if (eAttack.element != reactingWithEAttack.element) {
+                        reactingWithEAttack.HandleHit(this, true, eAttack.element);
+                    }
+                }
+            } else {
+                reactingWithEAttack.HandleHit(this, false, null);
+            }
+
+            affectedBy.Add(reactingWithEAttack);
+            StartCoroutine(RemoveElementalAttackAfterLifetime(reactingWithEAttack));
         }
+    }
+
+    private IEnumerator RemoveElementalAttackAfterLifetime(ElementalAttack eAttack) {
+        yield return new WaitForSeconds(6f);  // Wait for 6 seconds
+
+        affectedBy.Remove(eAttack);  // Remove from affectedBy list
     }
 }

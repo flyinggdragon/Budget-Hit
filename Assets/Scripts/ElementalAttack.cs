@@ -6,45 +6,65 @@ public class ElementalAttack : MonoBehaviour {
     [SerializeField] public Element element;
     [SerializeField] public bool isBurst;
     [SerializeField] public BoxCollider boxCollider;
+    public bool hasHit { get; set; } = false;
     private Player player;
+    private ElementalReaction? reaction;
 
     void Start() {
         player = GameObject.Find("Player").GetComponent<Player>();
+        StartCoroutine(LifetimeCoroutine());
     }
 
-    public void HandleHit(Collider other) {
-        Enemy enemy = other.GetComponent<Enemy>();
+    public void HandleHit(Enemy enemy, bool isReaction, Element? reactingWith = null) {
+        if (hasHit) { return; }
 
-        if (enemy) {
-            if (!isBurst) {
-                enemy.GetHit(
-                    Damage.CalculateDamage(
-                        AttackType.ElementalSkill,
-                        element,
-                        player.baseATK,
-                        player.critRate,
-                        player.critDMG,
-                        player.proficiency
-                    )
-                ); 
-            } else {
-                enemy.GetHit(
-                    Damage.CalculateDamage(
-                        AttackType.Burst,
-                        element,
-                        player.baseATK,
-                        player.critRate,
-                        player.critDMG,
-                        player.proficiency
-                    )
-                );
-            }
+        AttackType attackType = isBurst ? AttackType.Burst : AttackType.ElementalSkill;
+
+        if (!isReaction || reactingWith == null) {
+            int dmg = Damage.CalculateDamage(
+                attackType,
+                false,
+                element,
+                null,
+                player.baseATK,
+                player.critRate,
+                player.critDMG,
+                player.proficiency
+            );
+
+            Debug.Log("Non-Reaction DMG: " + dmg);
+            enemy.GetHit(dmg);
+        } 
+        
+        else {
+            reaction = new ElementalReaction(element, reactingWith.Value);
+
+            int dmg = Damage.CalculateDamage(
+                attackType,
+                true,
+                element,
+                reaction.reactingWith,
+                player.baseATK,
+                player.critRate,
+                player.critDMG,
+                player.proficiency
+            );
+
+            Debug.Log($"Reaction of {element} and {reactingWith}: {dmg}");
+            enemy.GetHit(dmg);
+            reaction = null;
         }
+
+        hasHit = true;
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy")) {
-            HandleHit(other);
-        }
+    private IEnumerator LifetimeCoroutine() {
+        yield return new WaitForSeconds(6f);
+
+        DestroySelf();
+    }
+
+    private void DestroySelf() {
+        Destroy(gameObject);
     }
 }
