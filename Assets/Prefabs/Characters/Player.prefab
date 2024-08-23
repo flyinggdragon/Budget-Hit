@@ -912,13 +912,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8102e1d764cfb3f4c9f15c298c2113a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 999
   animator: {fileID: 466598641895073472}
   rb: {fileID: 6525699208883191764}
   elementalAttackPosition: {fileID: 5303923933885692463}
   elementalSkill: {fileID: 7370418020878709, guid: b21fee969065f754a8d10ebcf20bca1e, type: 3}
   elementalBurst: {fileID: 7370418020878709, guid: d09d56d513e947047b6b00f108d3b014, type: 3}
-  weapon: {fileID: 0}
+  weapon: {fileID: 7827692434811016035}
 --- !u!114 &7856851403461573694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,13 +1023,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 354.473
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1364193043522037794, guid: 2a82d4a37d18dc94c8343cdf1e926fa1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6286357067638953401, guid: 2a82d4a37d18dc94c8343cdf1e926fa1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7827692434811016035}
   m_SourcePrefab: {fileID: 100100000, guid: 2a82d4a37d18dc94c8343cdf1e926fa1, type: 3}
+--- !u!65 &1840237673324962245 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 3508609992261775136, guid: 2a82d4a37d18dc94c8343cdf1e926fa1, type: 3}
+  m_PrefabInstance: {fileID: 2970335451878346469}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8452887639952441830 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6662636801038126851, guid: 2a82d4a37d18dc94c8343cdf1e926fa1, type: 3}
   m_PrefabInstance: {fileID: 2970335451878346469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9080769954669108060 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6286357067638953401, guid: 2a82d4a37d18dc94c8343cdf1e926fa1, type: 3}
+  m_PrefabInstance: {fileID: 2970335451878346469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7827692434811016035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9080769954669108060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeced7fc76d872c4baab966d3fb0b768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7799475870749204160}
+  _boxCollider: {fileID: 1840237673324962245}

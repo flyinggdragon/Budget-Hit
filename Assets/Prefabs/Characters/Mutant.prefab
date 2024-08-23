@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253910f394898b245b7d7180536db1a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentEnemy: {fileID: 6574374906452452304}
+  parentEnemy: {fileID: 5850017164965144487}
 --- !u!1 &1240429880424543699
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,10 +935,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6152901273096109936}
   - component: {fileID: 2267225895159891117}
-  - component: {fileID: 6574374906452452304}
   - component: {fileID: 209760024469972131}
   - component: {fileID: 7768069892352083231}
   - component: {fileID: 7173221120762008454}
+  - component: {fileID: 5850017164965144487}
   m_Layer: 0
   m_Name: Mutant
   m_TagString: Untagged
@@ -984,22 +984,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6574374906452452304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6784866040661763530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 258d4524aa6fc244594808c6a062d87d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2267225895159891117}
-  _boxCollider: {fileID: 7768069892352083231}
-  _attackCollider: {fileID: 1492687852750277716}
-  _attackBox: {fileID: 0}
 --- !u!54 &209760024469972131
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1069,6 +1053,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.66842276, y: 0.022934485, z: 0.47414148}
   m_Center: {x: 0.005522996, y: 0.030358462, z: -0.017030053}
+--- !u!114 &5850017164965144487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784866040661763530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6cdfd0cc95cfbd4898077c3cc91a613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2267225895159891117}
+  _boxCollider: {fileID: 7768069892352083231}
+  _attackCollider: {fileID: 1492687852750277716}
+  _attackBox: {fileID: 9097590482419199282}
 --- !u!1 &6933468866162964492
 GameObject:
   m_ObjectHideFlags: 0

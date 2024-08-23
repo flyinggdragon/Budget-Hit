@@ -22,14 +22,6 @@ public class Player : MonoBehaviour, IDamageable {
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
     private Element characterElement = Element.Electro;
-
-    [SerializeField] private GameObject elementalSkill2;
-    [SerializeField] private GameObject elementalBurst2;
-    private Element characterElement2 = Element.Pyro;
-
-    [SerializeField] private GameObject elementalSkill3;
-    [SerializeField] private GameObject elementalBurst3;
-    private Element characterElement3 = Element.Scotos;
     // Temporário
     [SerializeField] private Weapon weapon;
     [SerializeField] private Collision collision;
@@ -103,21 +95,10 @@ public class Player : MonoBehaviour, IDamageable {
         if (Input.GetKeyDown(KeyCode.E) && isGrounded) {
             animator.SetTrigger("Skill");
         }
-        
-        // Burst
-        if (Input.GetKeyDown(KeyCode.Alpha1) && isGrounded) {
-            //animator.SetTrigger("Burst");
-            InstantiateSkill2(elementalSkill);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha2) && isGrounded) {
-            //animator.SetTrigger("Burst");
-            InstantiateSkill2(elementalSkill2);
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && isGrounded) {
-            //animator.SetTrigger("Burst");
-            InstantiateSkill2(elementalSkill3);
+        // Burst
+        if (Input.GetKeyDown(KeyCode.Q) && isGrounded) {
+            animator.SetTrigger("Burst");
         }
 
         if (movement != Vector3.zero) {
@@ -139,10 +120,6 @@ public class Player : MonoBehaviour, IDamageable {
 
     public void InstantiateSkill() {
         Instantiate(elementalSkill, elementalAttackPosition.position, elementalAttackPosition.rotation);
-    }
-
-    public void InstantiateSkill2(GameObject prefab) {
-        Instantiate(prefab, elementalAttackPosition.position, elementalAttackPosition.rotation);
     }
 
     public void InstantiateBurst() {
