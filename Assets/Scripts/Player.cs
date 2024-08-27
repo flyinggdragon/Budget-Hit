@@ -13,8 +13,7 @@ public class Player : MonoBehaviour, IDamageable {
     private float stamina = 200;
     private bool isGrounded = true;
     private bool shouldMove = true;
-    // Temporário
-    
+
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody rb;
     [SerializeField] public Transform elementalAttackPosition;
@@ -22,16 +21,13 @@ public class Player : MonoBehaviour, IDamageable {
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
     private Element characterElement = Element.Electro;
-    // Temporário
-    [SerializeField] private Weapon weapon;
-    [SerializeField] private Collision collision;
 
-    //private PlayableCharacter character;
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private Transform cameraTransform;
 
     void Start() {
         DisableWeaponCollision();
     }
-
 
     void Update() {
         if (shouldMove) {
@@ -51,8 +47,7 @@ public class Player : MonoBehaviour, IDamageable {
         if (Input.GetKey(KeyCode.LeftShift) && stamina > 0.0f) {
             speed = sprintSpeed;
             stamina -= 1.0f;
-        }
-        else {
+        } else {
             speed = 5.0f;
 
             if (stamina < 200.0f) {
@@ -61,24 +56,29 @@ public class Player : MonoBehaviour, IDamageable {
         }
 
         // MOVIMENTAÇÃO
-        // Frente
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0;
+        right.y = 0;
+
+        forward.Normalize();
+        right.Normalize();
+
         if (Input.GetKey(KeyCode.W)) {
-            movement += Vector3.forward;
+            movement += forward;
         }
-        // Trás
         if (Input.GetKey(KeyCode.S)) {
-            movement += Vector3.back;
+            movement -= forward;
             animator.SetBool("walkBack", true);
         } else {
             animator.SetBool("walkBack", false);
         }
-        // Esquerda
         if (Input.GetKey(KeyCode.A)) {
-            movement += Vector3.left;
+            movement -= right;
         }
-        // Direita
         if (Input.GetKey(KeyCode.D)) {
-            movement += Vector3.right;
+            movement += right;
         }
 
         // Atacar
@@ -106,6 +106,10 @@ public class Player : MonoBehaviour, IDamageable {
         }
 
         rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+
+        if (movement != Vector3.zero) {
+            transform.forward = movement; // Faz o personagem olhar na direção do movimento
+        }
     }
 
     public void GetHit(int damageSuffered) {
