@@ -17,13 +17,11 @@ public class Player : MonoBehaviour, IDamageable {
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody rb;
     [SerializeField] public Transform elementalAttackPosition;
-
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
     private Element characterElement = Element.Electro;
-
     [SerializeField] private Weapon weapon;
-    [SerializeField] private Transform cameraTransform;
+    [SerializeField] Transform cam;
 
     void Start() {
         DisableWeaponCollision();
@@ -31,84 +29,56 @@ public class Player : MonoBehaviour, IDamageable {
 
     void Update() {
         if (shouldMove) {
-            HandleInput();
+            HandleMovement();
         }
-
-        Debug.Log("Vida do Player: " + health);
 
         if (health <= 0) {
             animator.SetTrigger("Die");
         }
     }
 
-    private void HandleInput() {
-        Vector3 movement = Vector3.zero;
-
+    private void HandleMovement() {
         if (Input.GetKey(KeyCode.LeftShift) && stamina > 0.0f) {
             speed = sprintSpeed;
             stamina -= 1.0f;
         } else {
             speed = 5.0f;
-
             if (stamina < 200.0f) {
                 stamina += 0.4f;
             }
         }
 
-        // MOVIMENTAÇÃO
-        Vector3 forward = cameraTransform.forward;
-        Vector3 right = cameraTransform.right;
+        float hInput = Input.GetAxisRaw("Horizontal");
+        float vInput = Input.GetAxisRaw("Vertical");
 
-        forward.y = 0;
-        right.y = 0;
+        Vector3 moveDirection = cam.forward * vInput + cam.right * hInput;
+        moveDirection.y = 0;
 
-        forward.Normalize();
-        right.Normalize();
-
-        if (Input.GetKey(KeyCode.W)) {
-            movement += forward;
-        }
-        if (Input.GetKey(KeyCode.S)) {
-            movement -= forward;
-            animator.SetBool("walkBack", true);
+        if (moveDirection != Vector3.zero) {
+            rb.velocity = moveDirection.normalized * speed + Vector3.up * rb.velocity.y;
+            transform.forward = moveDirection;
         } else {
-            animator.SetBool("walkBack", false);
-        }
-        if (Input.GetKey(KeyCode.A)) {
-            movement -= right;
-        }
-        if (Input.GetKey(KeyCode.D)) {
-            movement += right;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
         }
 
-        // Atacar
+        HandleActions();
+    }
+
+    private void HandleActions() {
         if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded) {
             animator.SetTrigger("Attack");
         }
 
-        // Pular
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
             animator.SetTrigger("Jump");
         }
 
-        // Skill
         if (Input.GetKeyDown(KeyCode.E) && isGrounded) {
             animator.SetTrigger("Skill");
         }
 
-        // Burst
         if (Input.GetKeyDown(KeyCode.Q) && isGrounded) {
             animator.SetTrigger("Burst");
-        }
-
-        if (movement != Vector3.zero) {
-            movement = movement.normalized * speed;
-        }
-
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
-
-        if (movement != Vector3.zero) {
-            transform.forward = movement; // Faz o personagem olhar na direção do movimento
         }
     }
 
@@ -117,9 +87,7 @@ public class Player : MonoBehaviour, IDamageable {
     }
 
     public void DestroySelf() {
-        Destroy(transform.GetChild(0).gameObject);
-        Destroy(transform.GetChild(1).gameObject);
-        Destroy(elementalAttackPosition.gameObject);
+        Destroy(gameObject);
     }
 
     public void InstantiateSkill() {
