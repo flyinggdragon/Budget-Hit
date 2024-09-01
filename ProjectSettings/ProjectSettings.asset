@@ -865,8 +865,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Budget Hit
-  metroPackageVersion: 
+  metroPackageName: BudgetHit
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -874,7 +874,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: Budget Hit
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Budget Hit
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
