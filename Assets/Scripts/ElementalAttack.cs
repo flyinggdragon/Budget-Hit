@@ -21,7 +21,7 @@ public class ElementalAttack : MonoBehaviour {
         AttackType attackType = isBurst ? AttackType.Burst : AttackType.ElementalSkill;
 
         if (!isReaction || reactingWith == null) {
-            int dmg = Damage.CalculateDamage(
+            float dmg = Damage.CalculateDamage(
                 attackType,
                 false,
                 element,
@@ -39,7 +39,7 @@ public class ElementalAttack : MonoBehaviour {
         else {
             reaction = new ElementalReaction(element, reactingWith.Value);
 
-            int dmg = Damage.CalculateDamage(
+            float dmg = Damage.CalculateDamage(
                 attackType,
                 true,
                 element,

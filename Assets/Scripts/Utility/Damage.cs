@@ -1,7 +1,7 @@
 using System;
 
 public static class Damage {
-    public static int CalculateDamage(
+    public static float CalculateDamage(
             AttackType attackType,
             bool isReaction,
             Element? element,
@@ -11,9 +11,9 @@ public static class Damage {
             float critDMG,
             int proficiency
         ) {
-        int partialDamage = 0;
+        float partialDamage = 0f;
 
-        int baseDMG = CalculateBaseDamage(baseATK);
+        float baseDMG = CalculateBaseDamage(baseATK);
 
         switch(attackType) {
             case AttackType.Physical:
@@ -48,32 +48,33 @@ public static class Damage {
         }
     }
 
-    public static int CalculateBaseDamage(int baseATK) {
+    public static float CalculateBaseDamage(int baseATK) {
         Random rng = new Random();
         return baseATK + rng.Next(1, 20);
     }
 
-    public static int CalculatePhysicalDamage(int baseDMG) {
-        return baseDMG * 10;
+    public static float CalculatePhysicalDamage(float baseDMG) {
+        return baseDMG * 10f;
     }
 
-    public static int CalculateElementalDamage(int baseDMG) {
-        return baseDMG * 15;
+    public static float CalculateElementalDamage(float baseDMG) {
+        return baseDMG * 15f;
     }
 
-    public static int CalculateElementalReactionDamage(
-            int baseDMG,
+    // Corrigido para aceitar float em vez de int no parâmetro baseDMG
+    public static float CalculateElementalReactionDamage(
+            float baseDMG, // Alterado para float
             Element attackElement,
             Element reactingWith,
             int proficiency
         ) {
-        int elementalDamage = CalculateElementalDamage(baseDMG);
+        float elementalDamage = CalculateElementalDamage(baseDMG);
         float proficiencyBonus = CalculateProficiencyBonus(proficiency);
 
         float subPartialDamage = elementalDamage * proficiencyBonus;
         float multiplier = attackElement == Element.Scotos ? 2.0f : 1.5f;
 
-        return (int)Math.Ceiling(subPartialDamage * multiplier);
+        return subPartialDamage * multiplier;
     }
 
     public static float CalculateProficiencyBonus(int proficiency) {
@@ -86,8 +87,9 @@ public static class Damage {
         return critRoll < critRate;
     }
 
-    public static int CalculateCriticalDamage(float critDMG, int partialDamage) {
+    // Corrigido para aceitar float no parâmetro partialDamage
+    public static float CalculateCriticalDamage(float critDMG, float partialDamage) { // Alterado para float
         critDMG = partialDamage * (1 + (critDMG / 100));
-        return (int)Math.Ceiling(critDMG);
+        return (float)Math.Ceiling(critDMG);
     }
 }

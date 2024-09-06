@@ -2,7 +2,7 @@ public interface ICharacter {
     string name { get; }
     int level { get; }
     int exp { get; }
-    int health { get; }
-    int maxHP { get; }
+    float maxHealth { get; }
+    float health { get; }
     void Die();
 }

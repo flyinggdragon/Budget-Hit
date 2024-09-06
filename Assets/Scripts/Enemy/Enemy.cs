@@ -12,11 +12,13 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
     public abstract string name { get; protected set; }
     public abstract int level { get; protected set; }
     public abstract int exp { get; protected set; }
-    public abstract int health { get; protected set; }
-    public abstract int maxHP { get; protected set; }
+    public abstract float maxHealth { get; protected set; }
+    public abstract float health { get; protected set; }
+    public abstract Animator animator { get; }
     public abstract BoxCollider boxCollider { get; }
     public abstract BoxCollider attackCollider { get; }
     public abstract EnemyAttackBox attackBox { get; }
+    public abstract HealthBar healthBar { get; }
     public abstract List<ElementalAttack> affectedBy { get; protected set; }
 
     public virtual void EnableBoxCollision() {
@@ -56,7 +58,7 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
         ); 
     }
 
-    public virtual void GetHit(int damageSuffered) {
+    public virtual void GetHit(float damageSuffered) {
         health -= damageSuffered;
     }
 

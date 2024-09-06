@@ -7,24 +7,29 @@ public class Player : MonoBehaviour, IDamageable {
     public float critRate { get; private set; } = 50.0f;
     public float critDMG { get; private set; } = 100.0f;
     public int proficiency { get; private set; } = 100;
+    public float maxHealth { get; private set; } = 1000f;
+    public float health { get; private set; } = 1000f;
     private float speed = 5.0f;
     private float sprintSpeed = 10.0f;
-    public int health { get; private set; } = 1000;
     private float stamina = 200;
     private bool isGrounded = true;
     private bool shouldMove = true;
-
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody rb;
     [SerializeField] public Transform elementalAttackPosition;
     [SerializeField] private GameObject elementalSkill;
     [SerializeField] private GameObject elementalBurst;
-    private Element characterElement = Element.Electro;
     [SerializeField] private Weapon weapon;
     [SerializeField] Transform cam;
+    [SerializeField] HealthBar healthBar;
+
+    private Element characterElement = Element.Electro;
 
     void Start() {
         DisableWeaponCollision();
+        
+        healthBar.maxHealth = maxHealth;
+        healthBar.health = health;
     }
 
     void Update() {
@@ -32,7 +37,7 @@ public class Player : MonoBehaviour, IDamageable {
             HandleMovement();
         }
 
-        if (health <= 0) {
+        if (health <= 0f) {
             animator.SetTrigger("Die");
         }
     }
@@ -82,8 +87,9 @@ public class Player : MonoBehaviour, IDamageable {
         }
     }
 
-    public void GetHit(int damageSuffered) {
+    public void GetHit(float damageSuffered) {
         health -= damageSuffered;
+        healthBar.Damage(damageSuffered);
     }
 
     public void DestroySelf() {

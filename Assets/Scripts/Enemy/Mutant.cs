@@ -12,12 +12,15 @@ public class Mutant : Enemy {
     public override string name { get; protected set; } = "Mutant";
     public override int level { get; protected set; } = 0;
     public override int exp { get; protected set; } = 0;
-    public override int health { get; protected set; } = 20000;
-    public override int maxHP { get; protected set; } = 100;
+    public override float maxHealth { get; protected set; } = 20000f;
+    public override float health { get; protected set; } = 20000f;
     public override List<ElementalAttack> affectedBy { get; protected set; }
 
     private Coroutine attackCoroutine;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
+    public override Animator animator {
+        get { return _animator; }
+    }
     [SerializeField] private BoxCollider _boxCollider;
     public override BoxCollider boxCollider {
         get { return _boxCollider; }
@@ -32,6 +35,11 @@ public class Mutant : Enemy {
         get { return _attackBox; }
     }
 
+    [SerializeField] private HealthBar _healthBar;
+    public override HealthBar healthBar {
+        get { return _healthBar; }
+    }
+
     public void DestroySelf() {
         base.DestroySelf(gameObject);
     }
@@ -42,21 +50,25 @@ public class Mutant : Enemy {
         }
 
         affectedBy = new List<ElementalAttack>();
+        
+        healthBar.maxHealth = maxHealth;
+        healthBar.health = health;
     }
 
     void Update() {
         Debug.Log("Vida do Mutante: " + health);
-        if (health <= 0) {
+        if (health <= 0f) {
             Die();
         }
     }
 
-    public override void GetHit(int damageSuffered) {
+    public override void GetHit(float damageSuffered) {
         base.GetHit(damageSuffered);
+        healthBar.Damage(damageSuffered);
     }
 
     public override void Die() {
-        animator.SetTrigger("Die");
+        _animator.SetTrigger("Die");
         base.DisableAttackCollision();
         base.DisableBoxCollision();
     }
@@ -66,7 +78,7 @@ public class Mutant : Enemy {
     }
 
     public override void Attack() {
-        animator.SetTrigger("Punch");
+        _animator.SetTrigger("Punch");
     }
 
     public override void HandleHit(Collider other) {
@@ -82,11 +94,11 @@ public class Mutant : Enemy {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Weapon")) {
-            animator.SetTrigger("Hit");
+            _animator.SetTrigger("Hit");
         }
 
         if (other.CompareTag("ElementalBurst") || other.CompareTag("ElementalSkill")) {
-            animator.SetTrigger("Hit");
+            _animator.SetTrigger("Hit");
 
             ElementalAttack reactingWithEAttack = other.GetComponent<ElementalAttack>();
 
@@ -106,8 +118,8 @@ public class Mutant : Enemy {
     }
 
     private IEnumerator RemoveElementalAttackAfterLifetime(ElementalAttack eAttack) {
-        yield return new WaitForSeconds(6f);  // Wait for 6 seconds
+        yield return new WaitForSeconds(6f);
 
-        affectedBy.Remove(eAttack);  // Remove from affectedBy list
+        affectedBy.Remove(eAttack);
     }
 }
