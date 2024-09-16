@@ -15,7 +15,9 @@ public class HealthBar : MonoBehaviour {
         lerpSpeed = 3f * Time.deltaTime;
 
         healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, lerpSpeed);
-        healthBar.color = Color.Lerp(Color.red, Color.green, (health / maxHealth));
+        healthBar.color = Color.Lerp(Color.red, Color.cyan, (health / maxHealth));
+
+        transform.LookAt(GameObject.Find("Player").transform);
     }
 
     public void Damage(float damageReceived) {

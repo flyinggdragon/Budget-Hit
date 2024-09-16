@@ -60,10 +60,8 @@ public static class Damage {
     public static float CalculateElementalDamage(float baseDMG) {
         return baseDMG * 15f;
     }
-
-    // Corrigido para aceitar float em vez de int no parâmetro baseDMG
     public static float CalculateElementalReactionDamage(
-            float baseDMG, // Alterado para float
+            float baseDMG,
             Element attackElement,
             Element reactingWith,
             int proficiency
@@ -86,9 +84,7 @@ public static class Damage {
         int critRoll = rng.Next(0, 100);
         return critRoll < critRate;
     }
-
-    // Corrigido para aceitar float no parâmetro partialDamage
-    public static float CalculateCriticalDamage(float critDMG, float partialDamage) { // Alterado para float
+    public static float CalculateCriticalDamage(float critDMG, float partialDamage) {
         critDMG = partialDamage * (1 + (critDMG / 100));
         return (float)Math.Ceiling(critDMG);
     }

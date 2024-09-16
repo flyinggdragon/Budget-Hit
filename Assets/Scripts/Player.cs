@@ -9,6 +9,7 @@ public class Player : MonoBehaviour, IDamageable {
     public int proficiency { get; private set; } = 100;
     public float maxHealth { get; private set; } = 1000f;
     public float health { get; private set; } = 1000f;
+    public int level { get; private set; } = 5;
     private float speed = 5.0f;
     private float sprintSpeed = 10.0f;
     private float stamina = 200;
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour, IDamageable {
 
         if (health <= 0f) {
             animator.SetTrigger("Die");
+            health = 0f;
         }
     }
 

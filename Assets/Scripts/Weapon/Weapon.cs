@@ -20,8 +20,7 @@ public abstract class Weapon : MonoBehaviour {
         Enemy enemy = other.GetComponent<Enemy>();
 
         if (enemy) {
-            enemy.GetHit(
-                Damage.CalculateDamage(
+            float damage = Damage.CalculateDamage(
                     AttackType.Physical,
                     false,
                     null,
@@ -30,8 +29,9 @@ public abstract class Weapon : MonoBehaviour {
                     player.critRate,
                     player.critDMG,
                     player.proficiency
-                )
-            );  
+                );
+            
+            enemy.GetHit(damage);  
         }
     }
 }
