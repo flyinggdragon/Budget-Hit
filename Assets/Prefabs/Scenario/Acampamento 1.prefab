@@ -121,6 +121,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -433,6 +436,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -776,6 +782,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1333,6 +1342,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1431,7 +1443,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 111.597, z: 0}
 --- !u!95 &7712163629344389901
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1445,6 +1457,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -1531,11 +1544,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cdfd0cc95cfbd4898077c3cc91a613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _boxCollider: {fileID: 1380529988409338830}
-  _attackCollider: {fileID: 6101441577501120839}
-  _attackBox: {fileID: 2780135052270321772}
-  _healthBar: {fileID: 0}
+  animator: {fileID: 7712163629344389901}
+  enemyCollision: {fileID: 1380529988409338830}
+  attackBox: {fileID: 6101441577501120839}
+  enemyAttackBox: {fileID: 2780135052270321772}
+  healthBar: {fileID: 8698715917606637213}
 --- !u!1 &2779658562638977395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +1767,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1837,6 +1853,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2210,6 +2229,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2330,7 +2352,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 140.927, z: 0}
 --- !u!95 &967050061827515752
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2344,6 +2366,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -2430,11 +2453,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cdfd0cc95cfbd4898077c3cc91a613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _boxCollider: {fileID: 2629458854513165287}
-  _attackCollider: {fileID: 3557575373692145851}
-  _attackBox: {fileID: 5937779235772547483}
-  _healthBar: {fileID: 0}
+  animator: {fileID: 967050061827515752}
+  enemyCollision: {fileID: 2629458854513165287}
+  attackBox: {fileID: 3557575373692145851}
+  enemyAttackBox: {fileID: 5937779235772547483}
+  healthBar: {fileID: 8551304696291948830}
 --- !u!1 &4010058114678004465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,6 +2966,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3321,6 +3347,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3443,6 +3472,9 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 3
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8776,6 +8808,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8872,9 +8907,8 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6364189706294516615}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 11
   m_Type: 2
-  m_Shape: 0
   m_Color: {r: 0.7924528, g: 0.40666574, b: 0.10840159, a: 1}
   m_Intensity: 1.9
   m_Range: 10
@@ -8924,8 +8958,12 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!1 &6364189707335682847
 GameObject:
   m_ObjectHideFlags: 0
@@ -13702,6 +13740,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14093,7 +14134,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 58.212, z: 0}
 --- !u!95 &2267225895159891117
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14107,6 +14148,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -14193,11 +14235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6cdfd0cc95cfbd4898077c3cc91a613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _boxCollider: {fileID: 7768069892352083231}
-  _attackCollider: {fileID: 1492687852750277716}
-  _attackBox: {fileID: 9097590482419199282}
-  _healthBar: {fileID: 0}
+  animator: {fileID: 2267225895159891117}
+  enemyCollision: {fileID: 7768069892352083231}
+  attackBox: {fileID: 1492687852750277716}
+  enemyAttackBox: {fileID: 9097590482419199282}
+  healthBar: {fileID: 8316677442646659788}
 --- !u!1 &6814571282486641229
 GameObject:
   m_ObjectHideFlags: 0
@@ -14414,6 +14456,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14919,6 +14964,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15869,6 +15917,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4277929056872097154, guid: f06beb7330d454a4f8b0c7093eebf103, type: 3}
   m_PrefabInstance: {fileID: 29550598604312468}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8316677442646659788 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8287250100091133272, guid: f06beb7330d454a4f8b0c7093eebf103, type: 3}
+  m_PrefabInstance: {fileID: 29550598604312468}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d862b3c5578564e891291a677155a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &409383768870937670
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15971,6 +16030,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4277929056872097154, guid: f06beb7330d454a4f8b0c7093eebf103, type: 3}
   m_PrefabInstance: {fileID: 409383768870937670}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8551304696291948830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8287250100091133272, guid: f06beb7330d454a4f8b0c7093eebf103, type: 3}
+  m_PrefabInstance: {fileID: 409383768870937670}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d862b3c5578564e891291a677155a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &845047274688631749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16073,3 +16143,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4277929056872097154, guid: f06beb7330d454a4f8b0c7093eebf103, type: 3}
   m_PrefabInstance: {fileID: 845047274688631749}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8698715917606637213 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8287250100091133272, guid: f06beb7330d454a4f8b0c7093eebf103, type: 3}
+  m_PrefabInstance: {fileID: 845047274688631749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d862b3c5578564e891291a677155a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable {
+public class Player : MonoBehaviour, IAttack, ICharacter, IDamageable {
     public int baseATK { get; private set; } = 50;
     public float critRate { get; private set; } = 50.0f;
     public float critDMG { get; private set; } = 100.0f;
+    public int exp { get; private set; } = 0;
+    public float energyRecharge { get; private set; } = 25f;
     public int proficiency { get; private set; } = 100;
     public float maxHealth { get; private set; } = 1000f;
     public float health { get; private set; } = 1000f;
@@ -39,8 +41,7 @@ public class Player : MonoBehaviour, IDamageable {
         }
 
         if (health <= 0f) {
-            animator.SetTrigger("Die");
-            health = 0f;
+            Die();
         }
     }
 
@@ -62,10 +63,10 @@ public class Player : MonoBehaviour, IDamageable {
         moveDirection.y = 0;
 
         if (moveDirection != Vector3.zero) {
-            rb.velocity = moveDirection.normalized * speed + Vector3.up * rb.velocity.y;
+            rb.linearVelocity = moveDirection.normalized * speed + Vector3.up * rb.linearVelocity.y;
             transform.forward = moveDirection;
         } else {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
         }
 
         HandleActions();
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour, IDamageable {
 
     private void HandleActions() {
         if (Input.GetKeyDown(KeyCode.Mouse0) && isGrounded) {
-            animator.SetTrigger("Attack");
+            Attack();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) {
@@ -87,6 +88,15 @@ public class Player : MonoBehaviour, IDamageable {
         if (Input.GetKeyDown(KeyCode.Q) && isGrounded) {
             animator.SetTrigger("Burst");
         }
+    }
+
+    public void Attack() {
+        animator.SetTrigger("Attack");
+    }
+
+    public void Die() {
+        animator.SetTrigger("Die");
+        health = 0f;
     }
 
     public void GetHit(float damageSuffered) {

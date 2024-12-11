@@ -9,41 +9,70 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
     public abstract float energyRecharge { get; protected set; }
     public abstract int proficiency { get; protected set; }
     public abstract float attackCooldownTime { get; protected set; }
-    public abstract string name { get; protected set; }
+    public abstract string enemyName { get; protected set; }
+    public abstract float maxHealth { get; protected set; }
     public abstract int level { get; protected set; }
     public abstract int exp { get; protected set; }
-    public abstract float maxHealth { get; protected set; }
-    public abstract float health { get; protected set; }
-    public abstract Animator animator { get; }
-    public abstract BoxCollider boxCollider { get; }
-    public abstract BoxCollider attackCollider { get; }
-    public abstract EnemyAttackBox attackBox { get; }
-    public abstract HealthBar healthBar { get; }
-    public abstract List<ElementalAttack> affectedBy { get; protected set; }
+    public Animator animator;
+    public BoxCollider enemyCollision;
+    public BoxCollider attackBox;
+    public EnemyAttackBox enemyAttackBox;
+    public HealthBar healthBar;
+    public List<ElementalAttack> affectedBy { get; protected set; }
 
-    public virtual void EnableBoxCollision() {
-        boxCollider.enabled = true;
+    private Coroutine attackCoroutine;
+    public float health { get; protected set; }
+
+    protected virtual void Start() {
+        if (attackCoroutine == null) {
+            attackCoroutine = StartCoroutine(PeriodicAttack(attackCooldownTime));
+        }
+
+        affectedBy = new List<ElementalAttack>();
+
+        health = maxHealth;
+        
+        healthBar.maxHealth = maxHealth;
+        healthBar.health = health;
     }
 
-    public virtual void DisableBoxCollision() {
-        boxCollider.enabled = false;
+    public virtual void Update() {
+        if (health <= 0f) {
+            Die();
+        }
+    }
+
+    public void EnableBoxCollision() {
+        enemyCollision.enabled = true;
+    }
+
+    public void DisableBoxCollision() {
+        enemyCollision.enabled = false;
     }
 
     public void EnableAttackCollision() {
-        attackCollider.enabled = true;
+        enemyCollision.enabled = true;
     }
 
     public void DisableAttackCollision() {
-        attackCollider.enabled = false;
+        enemyCollision.enabled = false;
     }
 
     public void DestroySelf(GameObject obj) {
         Destroy(obj);
     }
     
-    public abstract void Attack();
-    public abstract void Die();
-    public virtual void HandleHit(Collider other) {
+    public virtual void Attack() {
+        animator.SetTrigger("Punch");
+    }
+
+    public virtual void Die() {
+        animator.SetTrigger("Die");
+        DisableAttackCollision();
+        DisableBoxCollision();
+    }
+    
+    public void HandleHit(Collider other) {
         other.GetComponent<Player>().GetHit(
             Damage.CalculateDamage(
                 AttackType.Physical,
@@ -55,11 +84,12 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
                 critDMG,
                 proficiency
             )
-        ); 
+        );
     }
 
-    public virtual void GetHit(float damageSuffered) {
+    public void GetHit(float damageSuffered) {
         health -= damageSuffered;
+        healthBar.Damage(damageSuffered);
     }
 
     public void StartAttackTimer() {
@@ -75,5 +105,36 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
             Attack();
             yield return new WaitForSeconds(time);
         }
+    }
+
+    protected virtual void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Weapon")) {
+            animator.SetTrigger("Hit");
+        }
+
+        if (other.CompareTag("ElementalBurst") || other.CompareTag("ElementalSkill")) {
+            animator.SetTrigger("Hit");
+
+            ElementalAttack reactingWithEAttack = other.GetComponent<ElementalAttack>();
+
+            if (affectedBy.Count > 0) {
+                foreach (ElementalAttack eAttack in affectedBy) {
+                    if (eAttack.element != reactingWithEAttack.element) {
+                        reactingWithEAttack.HandleHit(this, true, eAttack.element);
+                    }
+                }
+            } else {
+                reactingWithEAttack.HandleHit(this, false, null);
+            }
+
+            affectedBy.Add(reactingWithEAttack);
+            StartCoroutine(RemoveElementalAttackAfterLifetime(reactingWithEAttack));
+        }
+    }
+
+    private IEnumerator RemoveElementalAttackAfterLifetime(ElementalAttack eAttack) {
+        yield return new WaitForSeconds(6f);
+
+        affectedBy.Remove(eAttack);
     }
 }

@@ -952,7 +952,8 @@ MonoBehaviour:
   elementalSkill: {fileID: 7370418020878709, guid: b21fee969065f754a8d10ebcf20bca1e, type: 3}
   elementalBurst: {fileID: 7370418020878709, guid: d09d56d513e947047b6b00f108d3b014, type: 3}
   weapon: {fileID: 7827692434811016035}
-  cameraTransform: {fileID: 0}
+  cam: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!114 &7856851403461573694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,5 +1095,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeced7fc76d872c4baab966d3fb0b768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1840237673324962245}
   player: {fileID: 7799475870749204160}
-  _boxCollider: {fileID: 1840237673324962245}

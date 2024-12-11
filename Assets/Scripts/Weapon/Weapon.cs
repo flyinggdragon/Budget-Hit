@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour {
-    public abstract string name { get; protected set; }
+    public abstract string weaponName { get; protected set; }
     public abstract int baseATK { get; protected set; }
-    public abstract BoxCollider boxCollider { get; protected set; }
+    [SerializeField] public BoxCollider boxCollider;
     [SerializeField] public Player player;
 
-    public virtual void EnableCollision() {
+    protected virtual void Start() { }
+
+    public void EnableCollision() {
         boxCollider.enabled = true;
     }
 
-    public virtual void DisableCollision() {
+    public void DisableCollision() {
         boxCollider.enabled = false;
     }
 
@@ -21,17 +23,23 @@ public abstract class Weapon : MonoBehaviour {
 
         if (enemy) {
             float damage = Damage.CalculateDamage(
-                    AttackType.Physical,
-                    false,
-                    null,
-                    null,
-                    player.baseATK,
-                    player.critRate,
-                    player.critDMG,
-                    player.proficiency
-                );
-            
+                AttackType.Physical,
+                false,
+                null,
+                null,
+                player.baseATK,
+                player.critRate,
+                player.critDMG,
+                player.proficiency
+            );
+        
             enemy.GetHit(damage);  
+        }
+    }
+
+    protected virtual void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Enemy")) {
+            HandleHit(other);
         }
     }
 }
