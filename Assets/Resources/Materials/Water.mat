@@ -73,8 +73,8 @@ Material:
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
-    - _Depth: 0.59
-    - _DepthStrength: 0.54
+    - _Depth: 0.3
+    - _DepthStrength: 0.3
     - _DetailNormalMapScale: 1
     - _DstBlend: 10
     - _FoamAmount: 1.5
@@ -84,14 +84,14 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
-    - _Mettalic: 0
+    - _Mettalic: 1
     - _Mode: 3
     - _NormalMapWavesSpeed: 0.1
     - _NormalMapsWavesSize: 5
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 1
-    - _Smootness: 0
+    - _Smootness: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _TessValue: 5
@@ -108,4 +108,3 @@ Material:
     - _FoamColor: {r: 0.30660376, g: 1, b: 0.9145772, a: 0}
     - _ShallowColor: {r: 0.52380735, g: 0.7314408, b: 0.745283, a: 0}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1

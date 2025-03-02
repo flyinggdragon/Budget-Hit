@@ -1,3 +1,3 @@
 public interface IDamageable {
-    void GetHit(float damageSuffered, Element element);
+    void GetHit(float damageSuffered);
 }
