@@ -83,11 +83,12 @@ public abstract class Enemy : MonoBehaviour, IAttack, ICharacter, IDamageable {
                 critRate,
                 critDMG,
                 proficiency
-            )
+            ), other.GetComponent<Player>().characterElement
         );
     }
 
-    public void GetHit(float damageSuffered) {
+    public void GetHit(float damageSuffered, Element element) {
+        // Here.
         health -= damageSuffered;
         healthBar.Damage(damageSuffered);
     }

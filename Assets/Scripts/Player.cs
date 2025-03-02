@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IAttack, ICharacter, IDamageable {
     [SerializeField] Transform cam;
     [SerializeField] HealthBar healthBar;
 
-    private Element characterElement = Element.Electro;
+    public Element characterElement = Element.Electro;
 
     void Start() {
         DisableWeaponCollision();
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour, IAttack, ICharacter, IDamageable {
         health = 0f;
     }
 
-    public void GetHit(float damageSuffered) {
+    public void GetHit(float damageSuffered, Element element) {
         health -= damageSuffered;
         healthBar.Damage(damageSuffered);
     }

@@ -33,7 +33,7 @@ public class ElementalAttack : MonoBehaviour {
             );
 
             Debug.Log("Non-Reaction DMG: " + dmg);
-            enemy.GetHit(dmg);
+            enemy.GetHit(dmg, element);
         } 
         
         else {
@@ -51,7 +51,7 @@ public class ElementalAttack : MonoBehaviour {
             );
 
             Debug.Log($"Reaction of {element} and {reactingWith}: {dmg}");
-            enemy.GetHit(dmg);
+            enemy.GetHit(dmg, element);
             reaction = null;
         }
 

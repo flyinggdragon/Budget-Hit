@@ -33,7 +33,7 @@ public abstract class Weapon : MonoBehaviour {
                 player.proficiency
             );
         
-            enemy.GetHit(damage);  
+            enemy.GetHit(damage, Element.Physical);
         }
     }
 
